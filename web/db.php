@@ -1,11 +1,15 @@
 <?php
 
-include('mysql.php');
+include_once('mysql.php');
+include_once('constants.php')
 
-$dbhost = '172.30.14.107';
+/*$dbhost = '172.30.14.107';
 $dbname = 'personal';
 $dbuser = 'personaluser';
-$dbpasswd = 'personaluser321';
+$dbpasswd = 'personaluser321';*/
+
+
+
 
 // Make the database connection.
 

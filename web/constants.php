@@ -3,10 +3,10 @@
    ////////////////////////
    // Database Connection
    ////////////////////////
-	$dbhost = '172.30.14.107';
-	$dbname = 'personal';
-	$dbuser = 'personaluser';
-	$dbpasswd = 'personaluser321';
+	$dbhost = 'us-cdbr-iron-east-05.cleardb.net';
+	$dbname = 'heroku_4b241068d3bb4b6';
+	$dbuser = 'b3f987052cc4f0';
+	$dbpasswd = '26a37061';
 
    /////////////////
    // Constants

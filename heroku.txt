@@ -1,0 +1,30 @@
+https://blog.fossasia.org/deploying-php-and-mysql-app-on-heroku/
+
+1.Heroku Create
+https://hidden-journey-27975.herokuapp.com/ | https://git.heroku.com/hidden-journey-27975.git
+
+2.Deploy Code
+git push heroku master
+
+3. Scale
+heroku ps:scale web=1
+heroku ps
+
+4. Open browser
+heroku open
+https://hidden-journey-27975.herokuapp.com/
+
+5. View Log
+heroku logs --tail
+
+6. See Procfile (see Step 3)
+heroku ps
+
+7. Interactive Shell
+heroku run "php -a"
+
+8.Create ClearDB Mysql
+heroku addons:create cleardb:ignite
+heroku get config
+CLEARDB_DATABASE_URL
+mysql://b3f987052cc4f0:26a37061@us-cdbr-iron-east-05.cleardb.net/heroku_4b241068d3bb4b6?reconnect=true
