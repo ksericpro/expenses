@@ -1,15 +1,13 @@
 <?php
 
 include_once('mysql.php');
-include_once('constants.php')
+//include_once('constants.php')
+$dbhost = 'us-cdbr-iron-east-05.cleardb.net';
+$dbname = 'heroku_4b241068d3bb4b6';
+$dbuser = 'b3f987052cc4f0';
+$dbpasswd = '26a37061';
 
-/*$dbhost = '172.30.14.107';
-$dbname = 'personal';
-$dbuser = 'personaluser';
-$dbpasswd = 'personaluser321';*/
-
-
-
+echo 'Connecting to '.$dbhost.'-'.$dbname.' user '.$dbuser.':'.$dbpasswd;
 
 // Make the database connection.
 
