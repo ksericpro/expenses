@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Eric See's CV</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+	
+	<link href="css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+			
+			<p align="center"><img class="img-circle" src="img/ic.jpg"/></p>
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Eric See Kian Seng
+                    </a>				
+                </li>
+                <li>
+                    <a href="#">Resume Dashboard</a>
+                </li>
+                <li>
+                    <a href="files/new-resume-v2.pdf" target="_blank">Download Resume</a>
+                </li>
+           
+            </ul>
+			<div class="description_1"><i>Powered by VueJS, Bootstrap, GoogleChart</i></div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Resume</h1>
+						
+						<!--<div id="vue-instance">
+							<button v-on:click="login">Greet</button>-->
+							<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
+								Toggle Screen
+							</a>
+						<!--</div>-->
+					
+					</div>
+                </div>
+            </div>
+			<br/>
+	
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default" id="panel1">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-target="#collapseOne" 
+           href="#collapseOne">
+          <b>Objective</b>
+        </a>
+      </h4>
+
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+				<p id="career_objective">
+					{{ message }}
+				</p>
+			</div>
+			
+			
+        </div>
+    </div>
+    <div class="panel panel-default" id="panel2">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-target="#collapseTwo" 
+           href="#collapseTwo" class="collapsed">
+          <b>Career Highlights</b>
+        </a>
+      </h4>
+
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+				<ul id="career_highlights">
+					<li v-for="(item, index) in items">
+						{{ item.message }} 				
+						<a v-if="item.link" :href="item.link" target="_blank">@</a>
+					</li>
+				</ul>
+			
+			</div>
+        </div>
+    </div>
+	
+	<div class="panel panel-default" id="panel8">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-target="#collapseEight" 
+           href="#collapseOne">
+          <b>Profile</b>
+        </a>
+      </h4>
+
+        </div>
+        <div id="collapseEight" class="panel-collapse collapse">
+            <div class="panel-body">
+				<ul id="profiles">
+					<li v-for="(item, index) in items">
+						<b>{{ item.title }}</b></br>
+						{{ item.message }}
+					</li>
+				</ul>
+			
+			</div>
+			
+			
+        </div>
+    </div>
+   
+  <!--Work Experiences-->  
+  <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion1" href="#collapseWork"><b>Work Experiences</b>
+              </a>
+            </h4>
+        </div>
+        <div id="collapseWork" class="panel-collapse collapse">
+            <div class="panel-body">
+
+                <div class="panel-group" id="accordion2">
+				<div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThreeOne"><b>STEE Info-Comm</b>, Singapore, Solution Architect (Nov 2016-)
+                            </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThreeOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+							
+							
+							<div id="workexperience_9">
+								<work-experience-template
+									:data="gridData">
+								</work-experience-template>
+							</div>
+						
+							</div>
+                        </div>
+                    </div>
+                    <!--<div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThreeOne"><b>ZingMobile Pte Ltd</b>, Singapore, Projects Director (Jul 2016-)
+                            </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThreeOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+							
+							
+							<div id="workexperience_1">
+								<work-experience-template
+									:data="gridData">
+								</work-experience-template>
+							</div>
+						
+							</div>
+                        </div>
+                    </div>-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+								<h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThreeTwo"><b>CrimsonLogic Pte Ltd</b>, Singapore, Solutions Architect (Dec 2015-Jun2016)
+                                </a>
+                                </h4>
+                        </div>
+                        <div id="collapseThreeTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+							
+							<!--<p>Status<code>Still Cooking..</code>.</p>-->
+							
+							<div id="workexperience_2">
+								<work-experience-template
+									:data="gridData">
+								</work-experience-template>
+							</div>
+	
+						</div>
+                        </div>
+                    </div>
+					
+					
+					<div class="panel panel-default">			
+					
+                        <div class="panel-heading">
+								<h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThreeThree"><b>ST Electronics (Info-comm) Pte Ltd</b>, Singapore, Solution Manager (Dec 2013-Dec 2015) 
+                                </a>
+                                </h4>
+                        </div>
+                        <div id="collapseThreeThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+							
+							<!--<p>Status<code>Still Cooking..</code>.</p>-->
+							
+							<div id="workexperience_3">
+								<work-experience-template
+									:data="gridData">
+								</work-experience-template>
+							</div>
+	
+							</div>
+                        </div>
+                    </div>
+					
+					
+					<div class="panel panel-default">			
+					
+                        <div class="panel-heading">
+								<h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThreeFour"><b>ST Electronics (Info-comm) Pte Ltd</b>, Singapore, Technical Manager (May 2012-Nov 2013) 
+                                </a>
+                                </h4>
+                        </div>
+                        <div id="collapseThreeFour" class="panel-collapse collapse">
+                            <div class="panel-body">
+							
+							<!--<p>Status<code>Still Cooking..</code>.</p>-->
+							
+							<div id="workexperience_4">
+								<work-experience-template
+									:data="gridData">
+								</work-experience-template>
+							</div>
+	
+							</div>
+                        </div>
+                    </div>
+					
+					<div class="panel panel-default">			
+					
+                        <div class="panel-heading">
+								<h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThreeFive"><b>CAE (S.E.A)</b>, Singapore, SOFTWARE Team Lead (Simulation, Train Signaling & H/W control) (Dec 2009 - May 2012) 
+                                </a>
+                                </h4>
+                        </div>
+                        <div id="collapseThreeFive" class="panel-collapse collapse">
+                            <div class="panel-body">
+							
+							<!--<p>Status<code>Still Cooking..</code>.</p>-->
+							
+							<div id="workexperience_5">
+								<work-experience-template
+									:data="gridData">
+								</work-experience-template>
+							</div>
+	
+							</div>
+                        </div>
+                    </div>
+					
+					<div class="panel panel-default">			
+					
+                        <div class="panel-heading">
+								<h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThreeSix"><b>ITE College East</b>, Singapore, Lecturer (CCNA, SOLARIS & Software Application)  (Dec 2005- Nov 2009) 
+                                </a>
+                                </h4>
+                        </div>
+                        <div id="collapseThreeSix" class="panel-collapse collapse">
+                            <div class="panel-body">
+							
+							<!--<p>Status<code>Still Cooking..</code>.</p>-->
+							
+							<div id="workexperience_6">
+								<work-experience-template
+									:data="gridData">
+								</work-experience-template>
+							</div>
+	
+							</div>
+                        </div>
+                    </div>
+					
+					<div class="panel panel-default">			
+					
+                        <div class="panel-heading">
+								<h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThreeSeven"><b>NUS</b>, Singapore, System Analyst  (Oct 2002-Nov 2005) 
+                                </a>
+                                </h4>
+                        </div>
+                        <div id="collapseThreeSeven" class="panel-collapse collapse">
+                            <div class="panel-body">
+							
+							
+							<div id="workexperience_7">
+								<work-experience-template
+									:data="gridData">
+								</work-experience-template>
+							</div>
+	
+							</div>
+                        </div>
+                    </div>
+					
+					<div class="panel panel-default">			
+					
+                        <div class="panel-heading">
+								<h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThreeEight"><b>Thales Information Systems</b>, Singapore, Software Engineer (Command & Control Application) (Jul 1999- Jul 2002) 
+                                </a>
+                                </h4>
+                        </div>
+                        <div id="collapseThreeEight" class="panel-collapse collapse">
+                            <div class="panel-body">
+							
+							<!--<p>Status<code>Still Cooking..</code>.</p>-->
+							<div id="workexperience_8">
+								<work-experience-template
+									:data="gridData">
+								</work-experience-template>
+							</div>
+	
+							</div>
+                        </div>
+                    </div>
+					
+                </div>
+	
+		
+			</div>
+        </div><!--end Work-->
+   </div>  <!--end panel default-->
+  
+	
+	
+	<div class="panel panel-default" id="panel3">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-target="#collapseThree"
+           href="#collapseThree" class="collapsed">
+          <b>Education</b>
+        </a>
+      </h4>
+
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+            <div class="panel-body">
+			
+			<!-- demo root element -->
+			<div id="education">
+				<!--<form id="search">
+					Search <input name="query" v-model="searchQuery">
+				</form>-->
+				<table-grid-1
+					:data="gridData"
+					:columns="gridColumns"
+					:filter-key="searchQuery">
+				</table-grid-1>
+			</div>
+					
+			</div>
+        </div>
+    </div>
+	
+	<!--Language Skills-->
+	<div class="panel panel-default" id="panel4">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-target="#collapseFour"
+           href="#collapseFour" class="collapsed">
+          <b>Language Skills</b>
+        </a>
+      </h4>
+
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse">
+            <div class="panel-body">
+				<p id="language_skills">
+					{{ message }}
+				</p>
+			</div>
+        </div>
+    </div>
+	
+	<!--Personal Projects-->
+	<div class="panel panel-default" id="panel5">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-target="#collapseFive"
+           href="#collapseFive" class="collapsed">
+          <b>Personal Projects</b>
+        </a>
+      </h4>
+
+        </div>
+        <div id="collapseFive" class="panel-collapse collapse">
+            <div class="panel-body">
+			<!--<p>Status<code>Still Cooking..</code>.</p>-->
+				<!-- demo root element -->
+				<div id="personal-project">
+					<personal-project-template
+						:data="gridData">
+					</personal-project-template>
+				</div>
+			</div>
+        </div>
+    </div>
+	
+	<!--Hobbies-->
+	<div class="panel panel-default" id="panel6">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-target="#collapseSix"
+           href="#collapseSix" class="collapsed">
+          <b>Hobbies</b>
+        </a>
+      </h4>
+
+        </div>
+        <div id="collapseSix" class="panel-collapse collapse">
+            <div class="panel-body">
+				<ul id="hobbies">
+					<li v-for="(item, index) in items">
+						{{ item.message }} 				
+					</li>
+				</ul>
+			</div>
+        </div>
+    </div>
+	
+	<!--Software Skill Matrix-->
+	<div class="panel panel-default" id="panel7">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-target="#collapseSeven"
+           href="#collapseSeven" class="collapsed">
+          <b>Skills Matrix</b>
+        </a>
+      </h4>
+
+        </div>
+        <div id="collapseSeven" class="panel-collapse collapse">
+            <div class="panel-body">
+				<!--<p>Status<code>Still Cooking..</code>.</p>-->
+				
+				<!--Google Chart-->
+				<div class="row">
+					<div class="col-md-6"><div id="barchart_programming_values" style="width: 900px; height: 300px;"></div></div>
+					<div class="col-md-6"><div id="barchart_datastore_values" style="width: 900px; height: 300px;"></div></div>
+				</div>
+				<div class="row" style="margin-top:50pt">
+					<div class="col-md-6"><div id="barchart_cloud_values" style="width: 900px; height: 300px;"></div></div>
+					<div class="col-md-6"><div id="barchart_frontend_values" style="width: 900px; height: 300px;"></div></div>
+				</div>
+				<div class="row" style="margin-top:50pt">
+					<div class="col-md-4"><div id="donutchart_javascript" style="width: 900px; height: 800px;"></div></div>
+					<div class="col-md-4"><div id="donutchart_framework" style="width: 900px; height: 800px;"></div></div>
+					<div class="col-md-4"><div id="donutchart_others" style="width: 900px; height: 500px;"></div</div>
+				</div>
+				
+			</div>
+        </div>
+    </div>
+	
+</div>
+
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+	
+	<!-- component template -->
+	<script type="text/x-template" id="grid-template-1">
+	<table>
+		<thead>
+		<tr>
+			<th v-for="key in columns"
+			@click="sortBy(key)"
+			:class="{ active: sortKey == key }">
+			{{ key | capitalize }}
+			<span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
+			</span>
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr v-for="entry in filteredData">
+			<td v-for="key in columns">
+			{{entry[key]}}
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	</script>
+	
+	<!-- Personal Project Template-->
+	<script type="text/x-template" id="personal-project-template">
+	<table class="borderless_table">
+		<tr v-for="entry in filteredData"><td>
+			<table width="100%">
+			<tr>
+				<td>
+					<b> {{entry['title']}}</b>
+				</td>
+				<td>
+					{{entry['period']}}
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					{{entry['description']}}
+				</td>
+			</tr>
+			</table>
+		</td></tr>
+	</table>
+	</script>
+	
+	<!-- Work Experience Template-->
+	<script type="text/x-template" id="work-experience-template">
+	<table class="borderless_table">
+		<tr v-for="entry in filteredData">
+			<td>		
+				{{entry['title']}}				
+				<ul id="repeat-object" class="demo">
+					<li v-for="point in entry['Points']">
+						{{ point['title'] }}
+						
+						<ul id="repeat-object" class="demo">
+							<li v-for="sub_point in point['Points']">
+								{{ sub_point['title'] }}
+							</li>
+						</ul>
+						
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	</script>
+	
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="node_modules/vue/dist/vue.js"></script>
+	<script>
+	// register the grid component
+	Vue.component('table-grid-1', {
+	template: '#grid-template-1',
+	props: {
+		data: Array,
+		columns: Array,
+		filterKey: String
+	},
+	data: function () {
+		var sortOrders = {}
+		this.columns.forEach(function (key) {
+		sortOrders[key] = 1
+		})
+		return {
+		sortKey: '',
+		sortOrders: sortOrders
+		}
+	},
+	computed: {
+		filteredData: function () {
+		var sortKey = this.sortKey
+		var filterKey = this.filterKey && this.filterKey.toLowerCase()
+		var order = this.sortOrders[sortKey] || 1
+		var data = this.data
+		if (filterKey) {
+			data = data.filter(function (row) {
+			return Object.keys(row).some(function (key) {
+				return String(row[key]).toLowerCase().indexOf(filterKey) > -1
+			})
+			})
+		}
+		if (sortKey) {
+			data = data.slice().sort(function (a, b) {
+				a = a[sortKey]
+				b = b[sortKey]
+				return (a === b ? 0 : a > b ? 1 : -1) * order
+			})
+		}
+		return data
+		}
+	},
+	filters: {
+		capitalize: function (str) {
+		return str.charAt(0).toUpperCase() + str.slice(1)
+		}
+	},
+	methods: {
+		sortBy: function (key) {
+		this.sortKey = key
+		this.sortOrders[key] = this.sortOrders[key] * -1
+		}
+	}
+	});
+	
+	// register the grid component
+	Vue.component('personal-project-template', {
+		template: '#personal-project-template',
+		props: {
+			data: Array
+		},
+		computed: {
+			filteredData: function () {
+				return this.data;
+			}
+		}
+	});
+	
+	
+	// register the grid component
+	Vue.component('work-experience-template', {
+		template: '#work-experience-template',
+		props: {
+			data: Array
+		},
+		computed: {
+			filteredData: function () {
+				return this.data;
+			}
+		}
+	});
+		
+	var objective = new Vue({
+		el: '#career_objective',
+		data: { message : "To be an expert innovator and designer of solution applications that are impactful. Never stop learning"+
+							  "& always on a lookup for new technologies that I can learn & leveraged." }
+	});
+		
+	var career_highlights = new Vue({
+		el: '#career_highlights',
+		data: {
+			parentMessage: 'Career Highlights',
+			items: [
+					{ message: 'Won 1st Prize STE Electronics Business Innovation Award 2015 for SNAPi & NOPO solution in'+
+					'STEE-Infocomm. Chief Architect/Developer for the end-to-end solution. One of SITF 2015’s'+
+					'12 Finalist in Best Infocomm Innovative Products (Enterprise). Product used by STEEInfoComm'+
+					'for carpark enforcement.', link: 'http://www.channel8news.sg/news8/latestnews/20150527-sg-illegal/1875580.html' },
+					{ message: '16 years of software industry experience, strong innovative and technical background.' },
+					{ message: '5+ years at Lead/Architect for cloud and on-premises software & mobile solution.'},
+					{ message: 'Successfully implemented Service Report on Mobile to replace manual. (Integrated'+
+					+'SugarCRM & HPSM).'},
+					{ message: 'CCNA Trainer.'},
+					{ message: 'Experience application integrator in APIs & SOA environments.'},
+					{ message: 'Experience in Command & Control, Train & Signal Simulation Domains.'}
+				]
+		},
+		methods: {
+			sayHello: function(){
+				alert('Hey there, ' + this.name);
+			}
+		}
+	});
+	
+	var profiles = new Vue({
+		el: '#profiles',
+		data: {
+			parentMessage: 'profiles',
+				items: [
+					{ title:'Trinity System - 2017', message:
+'System Architect for system for booking & monitor of Urine Drug Testing. Design '+'the software architect and determine the technology stacks for the project.' 
++'System includes Kiosks registration/label printings, Enrolment, Central Monitoring, Queue System, Scheduling, Machinery controls & monitoring, Reporting, CMS and Mobile application. Technology Stacks include ActiveMQ, Redis, .Net C#, SQL Server, Bootstrap/KendoUI, Android and .Net WPF C#.'},
+					{ title:'STEE Smart Carpark - 2017', message:
+'Software Architect/Developer for the Smart Carpark system which includes barrier, payment system using ANPR technology. It was showcase at CommunicAsia 2017. Technology stack includes JAVA Rest API hosted on Tomcat, OpenCV, .Net WPF C#, C# middleware, ffmpeg, vendor SDKs and utilities to control hardware equipment like barrier arm and cameras. Redis is used as messaging bus.' },
+					{ title:'Georges E-Commerce/CMS – 2016', message:
+'Leads and project manage Offshore Technical Team to implement e-commerce portal plus mobile for Georges.  Technology stacks are PHP, Nginx, KendoUI, Andriod & IOS Native, GCM/APN Messaging, Google Analytics & MS SQL Server hosted on AWS cloud'},
+					{ title:'HDB Carpark Enforcement System - 2015', message:
+'Chief Architect/Developer for the end-to-end solution. Won 1st Prize STE Electronics Business Innovation Award 2015 for SNAPi & NOPO solution in STEE-Infocomm.  One of SITF 2015’s 12 Finalist in Best Infocomm Innovative Products (Enterprise).'},
+					{ title:'STEE Helpdesk E-Service Report - 2014', message:
+'System Architect for the automation of Service Report on HPSM (HP Service Manager). Design network, middlewares and tools to integrate Android tab to SugarCRM and to HPSM. Introduced Jasper Reporting tools integrated to SugarCRM for live and monthly reports of cases to stakeholders. (SPF, SCDF & management).'
+					},		
+{ title:'Stargate 2 - 2012', message:
+'Technical Manager for Stargate2 system. SOA middleware to take in messages from different sources and integrate into internal system. Microsoft Technologies.'
+					},
+{ title:'Personal Expenses tracker – 2002 – current', message:
+'Personal Project to track own expenses and stocks profit/loss. It has bar and graph utilities. It was migrated to Openshift in 2015. It is based of PHP & MySQL.'
+					}
+				]
+		}
+	});
+	
+		
+	var hobbies = new Vue({
+		el: '#hobbies',
+		data: {
+			parentMessage: 'Hobbies',
+				items: [
+					{ message: 'Reading Software & Technologies' },
+					{ message: 'Reading' },
+					{ message: 'Jogging'}
+				]
+		}
+	});
+		
+	var language_skills = new Vue({
+		el: '#language_skills',
+		data: { message : "Speak & Write in English & Chinese" }
+	});
+		
+	// Education
+	var education = new Vue({
+		el: '#education',
+		data: {
+			searchQuery: '',
+			gridColumns: ['qualification', 'school', 'year'],
+			gridData: [
+					{ qualification: 'Certified Sun Solaris 10 Administrator', school: 'Suns Microsystems', year: '2008' },
+					{ qualification: 'Certified Oracle8i DBA', school: 'Oracle University', year: '2003' },
+					{ qualification: 'Specialist Diploma in E-Commerce', school: 'NYP', year: '2000' },
+					{ qualification: 'Bachelor of Applied Science (Comp Eng.)', school: 'NTU', year: '1996-1999' }
+				]
+			}
+	});
+	
+	// Personal Project
+	var personalproject = new Vue({
+		el: '#personal-project',
+		data: {
+			gridData: [
+				{ title: 'Expenses Tracker', period: '2002 - Present', description: 'Personal Expenses Tracker hosted on Openshift Using PHP, MySQL, iText & Apache Http Server' },
+				{ title: 'Spedco Kaltim Intranet', period: '2008', description: 'Web application using  .Net, SQL Server & Web Service' },
+				{ title: 'Advertising Chat', period: '2016 - Present ', description: 'Hosted on AWS Ubuntu Using NodeJS, Redis, Html5 & Socket' }
+			]
+		}
+	});
+	
+	var workexperience_1 = new Vue({
+		el: '#workexperience_1',
+		data: {
+			gridData: [
+				{ title: 'Leading team up to 20 local & oversea software engineers. Reports to CTO.' },
+				{ title: 'Manage multiple projects with stakeholders like local & oversea clients & vendors.'},
+				{ title: 'Design, architect, develop Solutions, API defining, Writing Project & Design documents, Implementations, integration & testing of systems using Agile iterations.'},
+				{ title: 'Design, architect, develop Solutions, API defining, Writing Project & Design documents, Implementations, integration & testing of systems using Agile iterations.', 
+					Points:[{ title: 'Architect scalable web/mobile API-first applications on AWS using open source technologies.'},
+					        { title: 'Manage itune Store and android play store versioning, review & releases.'},
+							{ title: 'Wrote & Design network infrastructure to increase robustness & security.'},
+							{ title: 'Frontend (Manage/Design/Implement):',
+							  Points:[{title:'Mobile technologies includes GCM and APN.'},
+									  {title:'Wrote and oversee module workflow.'},
+									  {title:'Design Website template using bootstrap, kendoUI & JQuery for team.'},
+									  {title:'Websocket in clients.'}
+							  ]
+							},
+							{ title: 'Backend (Manage/Design/Implement):',
+							  Points:[{title:'PHP based – Content Management System, API services & Cron jobs.'},
+									  {title:'Ubuntu IAAS Nodes in AWS.'},
+									  {title:'ZeroMQ for client/server communication as alternative for messaging. '},
+									  {title:'Architect & Setup Nginx as proxy, load balancer, logging mechanism & web server.'},
+									  {title:'Integrate with Point Of Sale System (Raptor) & SQL Servers.'},
+									  {title:'Socket.IO for NodeJS.'},
+									  {title:'Token-authenticated Restful APIs using PHP and NodeJS.'},
+									  {title:'MongoDB as Main datastore.'},
+									  {title:'Redis for PUB/SUB channel, caching & inter process communication.'},
+									  {title:'Elasticsearch for persistent store, indexing, searching & updating records.'},
+									  {title:'Analytical Reports.'}
+							  ]
+							}
+							]
+				}
+			]
+		}
+	});
+	
+	var workexperience_2 = new Vue({
+		el: '#workexperience_2',
+		data: {
+			gridData: [
+				{ title: 'Works in Architect Office.', 
+					Points:[{ title: 'Define Baseline development tools, technologies & software design patterns.'},
+					        { title: 'Setup TFS and Azure as Dev Ops tools for ASP.NET MVC project.'},
+							{ title: 'Setup & Develop projects using SCRUM iterations and Git as Source control.'},
+							{ title: 'Extensive use of Cloud technologies like Azure IaaS & Openshift PaaS for deployment.'},
+							{ title: 'Architect and Develop project in ASP.Net MVC 5, JQuery, Bootstrap, SSIS as ETL tool, SSRS as reporting tools & Microsoft AD as single logon.'},
+							{ title: 'Workflow Development in .NET MVC.'},
+							{ title: 'Architecting Form Engine using JQuery, AngularJS, NodeJS, Bootstrap, KendoUI, MongoDB & Rest API for responsive SPA.'},
+							{ title: 'Vet interviewees to judge whether suitability for project and company.'}
+							]
+				},
+				{ title: 'Software Architect for Cambodia ECO project.', 
+					Points:[{ title: 'Design trade web using .NET, SQL Server & bootstrap.'},
+					        { title: 'Use TFS and Azure Cloud as DevOps between customer and development team.'},
+							{ title: 'Interface with CoSign Security Appliance.'},
+							{ title: 'Form generator using iText.'},
+							{ title: 'Workflow design and implementation.'}
+							]
+				},
+				{ title: 'Others.', 
+					Points:[{ title: 'AWS fine-tuning & maintenance. (EC2 on demand, Spot, CloudFront, S3, Kinesis, RDS MySQL with replica).'},
+					        { title: 'Admin & API Application using Google Chart, Google Authentication, ASP.net MVC, Quartz.NET, AWS API & MySQL.'},
+							{ title: 'Propotype using Linux & ASP.net core for future migration.'}
+							]
+				}
+			]
+		}
+	});
+	
+	var workexperience_3 = new Vue({
+		el: '#workexperience_3',
+		data: {
+			gridData: [
+				{ title : 'Collaborate with customers for requirements & translate into specifications for development team.'},
+				{ title : 'Collaborate with stakeholders for new initiatives & in charge of the overall technical solution.'},
+				{ title : 'Identify areas to improve in terms of productivity, propose, design solution, prototype & implement.'},
+				{ title : 'Validate and make decisions on vendor’s products to be used in projects/products.'},
+				{ title : 'Define technology roadmaps & frameworks for End-to-End projects/projects across division and software team (MVVM, MVC, Unity, Logging, NHibernate, Entity Framework, SOA, etc).'},
+				{ title : 'Define development methodology for team.'},
+				{ title : 'Dictate & setup development environment for team.'},
+				{ title : 'Manage, Build & Lead Team with Software, Network, Database & Infrastructure expertise.'},
+				{ title : 'Develop products/solutions & provide technical services for projects across division.'},
+				{ title : 'Support presales in terms of tender feasibility study, costing, manpower estimates, scheduling, solution, proof-of-concepts, tender proposal write-up and presentation.'},
+				{ title : 'Some technical solutions architected:'},
+				{ title : '1. HDB Enforcement (Network, Software & Database Designs)', 
+					Points:[{ title: 'Architected End to End Solution (including the hardware design).'},
+					        { title: 'Architect Client module using WPF, MVVM Prism, NHibernate, Log4Net & MySQL.'},
+							{ title: 'Architect Server module using Entity Framework 6, WCF Web Services & MySQL.'},
+							{ title: 'Reporting module using JSF, PrimeFaces, Log4J, JPA & MySQL running on Tomcat.'},
+							{ title: 'Setup Photo-management modules using PhoneGap+HTML5 for Android clients, SFTP, Java RESTFUL web service & Open source photo gallery.'},
+							{ title: 'Built middleware to pull new XML & Flat messages.'}
+							]
+				},
+				{ title: '2.  Helpdesk (Network & System Design)', 
+					Points:[{ title: 'Designed network solution for main DC & recovery DR sites including sizing of hardware.'},
+					        { title: 'Designed database DR solution using LOGSHIPPING.'},
+							{ title: 'PABX and Customer Relationship Management System.'}
+							]
+				},
+				{ title: '3.  Fleet management Tracking System (Solution & Software)', 
+					Points:[{ title: 'Location transmitting devices fitted on vehicles.'},
+					        { title: 'Using Java REST API, AngularJS and GoogleMap.'},
+							{ title: 'Generate reports & statistics.'}
+							]
+				},
+				{ title: '4. eService Report', 
+					Points:[{ title: 'Phone module using HTML5 & Phonegap.'},
+					        { title: 'Use SugarCRM as Service Desk.'},
+							{ title: 'Built SMS gateway using C#.'},
+							{ title: 'Using Java as Middleware to sync between HPSM’s SQL Server and SugarCRM’s MySQL.'},
+					        { title: 'Using TIBCO Jasper as reporting tools for customer and internal audit.'},
+							{ title: 'Using .NET RESTFUL webservices for distributed modules communication.'},
+							{ title: 'Design End to End solutioning including network architecture.'}
+							]
+				}
+			]
+		}
+	});
+	
+	var workexperience_4 = new Vue({
+		el: '#workexperience_4',
+		data: {
+			gridData: [
+				{ title : 'Manage/lead a team of 7 software leads/COTS leads/engineers for government project.'},
+				{ title : 'Engage end-users/customers to understand their requirements, needs and expectations & translate them into technical functions.'},
+				{ title : 'Collaborate with internal Business Unit for technical & contractual issues.'},
+				{ title : 'Integrated with external vendor modules.'},
+				{ title : 'Planned, sized & managed infrastructure for production environment.'},
+				{ title : 'Wrote Technical documents.'},
+				{ title : 'Use the following Processes & Tools for Application Development Environment:', 
+					Points:[{ title: 'VisualSVNServer & TortoiseSvn Client for Version Control.'},
+					        { title: 'Cruise Control.Net, MsBuild & SVNStat for Build Server.'},
+							{ title: 'Mantis for Bug Reporting & Issues logging.'},
+							{ title: 'AGILE sprints for main SDLC methodology.'},
+							{ title: 'OpenFire & Pidgin for internal project communication.'},
+							{ title: 'ReSharper & FXCop for refactoring of codes.'}
+							]
+				},
+				{ title: 'Implemented application design features:', 
+					Points:[{ title: 'Using of Microsoft technologies based on N-Tier architecture.'},
+					        { title: 'Using of NHibernate for Data Access Layer.'},
+							{ title: 'Using of XML as Central Configurations & Preloaded Constants.'},
+							{ title: 'Using Dynamic Language Runtime for dynamic Expressions (IronPython.NET).'},
+					        { title: 'Using of Dependency Injection & Inversion of Control (UNITY Framework).'},
+							{ title: 'Using of Central logging mechanism onto Event logs, Consoles & Files.'},
+							{ title: 'Leverage on Ms Office’s filters & iTextSharp to extract/create MS Documents & PDFs.'},
+					        { title: 'Using of NUnit for Unit testing.'},
+							{ title: 'Using of thread pool with maximum threads threshold to prevent resource overload.'},
+							{ title: 'Distributes threads to available servers & CPUs in each server for load balancing.'},
+					        { title: 'Using WCF Web Services as SOA services & WPF UI (MVP architecture).'},
+							{ title: 'Use of Biztalk and IBM Websphere MQ as midleware.'}
+							]
+				},
+				{ title: 'Travel to Israel for integration & training for 3 weeks.'}
+			]
+		}
+	});
+	
+	var workexperience_5 = new Vue({
+		el: '#workexperience_5',
+		data: {
+			gridData: [
+				{ title : 'Software & Technical Lead of 4 man team.'},
+				{ title : 'Completed 2 simulation projects successfully including one Brunei Project.'},
+				{ title : 'Architected software, network, database & system design for projects.'},
+				{ title : 'Integrate distributed application modules written in Java, VC++ & C# together for model train system using shared memory, piping & networking.'},
+				{ title : 'Developed modules using VC++ Multithreading, ASP.NET, XML, VC#, ASP.NET, MySQL & WPF.'},
+				{ title : 'Implemented SOA services to control devices using C# Remoting.'},
+				{ title : 'Simulate train fix block signaling on physical trains, stations & tracks. Integrate ATS (Automatic Train Supervision) as part of ATC into Train model.'},
+				{ title : 'Implemenedt hardware control using I/O cards, RS232 & Ethernet (TVs, Polycoms, RTS Zeus, Video Matrixes & Processors, Ubox, AV Systems, Projectors, Sensors & UPS).'},
+				{ title : 'Designed HP routers & switches for multiple VLANs, Trunking & Sub-interfaces for control center.'},
+				{ title : 'Leverage of open-source tools to be integrated into applications:', 
+					Points:[{ title: '(Lame Encoder & ffmpeg) to record/replay sound & video'},
+					        { title: 'VLC Media for broadcasting/recording.'}
+							]
+				},
+				{ title : 'Travel to Germany for On Job Training & application integration for 3 weeks.'}
+				]
+		}
+	});
+	
+	var workexperience_6 = new Vue({
+		el: '#workexperience_6',
+		data: {
+			gridData: [
+				{ title : 'Staff Advisor of Lion and Dragon dance & SICT Academic Social Club.'},
+				{ title : 'Trainer for CCNA night classes & Sun Solaris electives.'},
+				{ title : 'Participated in industrial attachments.'},
+				{ title : 'Join 5 inter-college competitions and won something in all of them.'},
+				{ title : 'Proposed, designed & developed applications to improve department work processes & reduce papers using Apache 2 & PHP 5, MySQL 5.0 & ArgoUML0.2.'}
+				]
+		}
+	});
+	
+	var workexperience_7 = new Vue({
+		el: '#workexperience_7',
+		data: {
+			gridData: [
+				{ title : 'Architect library application for NUS Business Library that has 3000 users.'},
+				{ title : 'Architect & design Library system to use VB Scripts, Javascript & VB.NET, triggers, Java Swing, XML, Java Xerces, Java Mail, Java Help, Java Print, ASP.NET, VBScripts & MS QL Server.'},
+				{ title : 'Successfully imported & migrated data from ORACLE 9i Data sources to MSSQL Server.'},
+				{ title : 'Implemented Java-Based Email-sending on Linux platform as middleware.'},
+				{ title : 'Implemented CRON jobs in Linux to clean up & archive old logs.'},
+				{ title : 'Architected ASP.NET C# pages for administration.'}
+				]
+		}
+	});
+	
+	var workexperience_9 = new Vue({
+		el: '#workexperience_9',
+		data: {
+			gridData: [
+				{ title : 'System & Software architecturing.'},
+				{ title : 'Develop solutions and POCs.'},
+				{ title : 'Project Management for LTA project.'},
+				{ title : 'CMMI & SQA lead.'},
+				{ title : 'Support tenders in term of technical solutioning.'}
+				]
+		}
+	});
+	
+	var workexperience_8 = new Vue({
+		el: '#workexperience_8',
+		data: {
+			gridData: [
+				{ title : 'Promoted to team lead (4 Person).'},
+				{ title : 'Implemented Command & Control project to monitor and track fire vehicles using Motorola equipment, GPS, DGPS using Server-Client software.'},
+				{ title : 'Developed programs on UNIX C, Shell Programming & Socket Programming with XMotif UI.'},
+				{ title : 'Handled GIS (Geographical Interface System) & vector maps for project on Solaris machine.'},
+				{ title : 'Solaris administrations on Solaris and Windows machines.'},
+				{ title : 'Implemented gateway interface using VC++ Multithreaded, Socket & Registry programming.'},
+				{ title : 'Integrated gateway application using RF wireless communication with Motorola’s Mobile Data Terminals & PABX.'},
+				{ title : 'Use Rational Rose UML to design Sequence, Flow & Class diagrams.'}
+				]
+		}
+	});
+	
+	//Google Charts
+	var COLOR_CODE = ["blue", "red", "cyan", "silver", "black", "purple"];
+	
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+	
+	function drawChart() {
+	   drawProgramming();
+	   drawDataStore();
+	   drawCloud();
+	   drawFrontEnd();
+	   drawJavascript();
+	   drawFramework();
+	   drawOthers();
+	}
+	
+	function drawProgramming()
+	{
+		console.log("Draw Programming");
+		var data = google.visualization.arrayToDataTable([
+			["Skills", "Level", { role: "style" } ],
+			[".Net", 10, COLOR_CODE[0]],
+			["Java", 8.5, COLOR_CODE[1]],
+			["PHP", 10, COLOR_CODE[2]],
+			["Python", 8.5, COLOR_CODE[3]],
+			["C/C++", 9, COLOR_CODE[4]],
+			["NodeJS", 9, COLOR_CODE[5]]
+		]);
+
+		var view = new google.visualization.DataView(data);
+		view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+		var options = {
+			title: "Programming Stacks",
+			width: 600,
+			height: 400,
+			bar: {groupWidth: "95%"},
+			legend: { position: "none" },
+		};
+		var chart = new google.visualization.BarChart(document.getElementById("barchart_programming_values"));
+		chart.draw(view, options);
+	}
+	
+	function drawDataStore()
+	{
+		console.log("Draw Datastore/Cache");
+		var data = google.visualization.arrayToDataTable([
+			["Skills", "Level", { role: "style" } ],
+			["MySQL", 10, COLOR_CODE[0]],
+			["SQL Server", 9, COLOR_CODE[1]],
+			["MongoDB", 9, COLOR_CODE[2]],
+			["ElasticSearch", 8.5, COLOR_CODE[3]],
+			["Redis", 9, COLOR_CODE[4]]
+		]);
+
+		var view = new google.visualization.DataView(data);
+		view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+		var options = {
+			title: "Data Store/Cache/IPC",
+			width: 600,
+			height: 400,
+			bar: {groupWidth: "95%"},
+			legend: { position: "none" },
+		};
+		var chart = new google.visualization.BarChart(document.getElementById("barchart_datastore_values"));
+		chart.draw(view, options);
+	}
+	
+	function drawCloud()
+	{
+		console.log("Draw Cloud");
+		var data = google.visualization.arrayToDataTable([
+			["Skills", "Level", { role: "style" } ],
+			["AWS", 10, COLOR_CODE[0]],
+			["Azure", 8, COLOR_CODE[1]],
+			["Openshift", 10, COLOR_CODE[2]]
+		]);
+
+		var view = new google.visualization.DataView(data);
+		view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+		var options = {
+			title: "Cloud",
+			width: 600,
+			height: 400,
+			bar: {groupWidth: "95%"},
+			legend: { position: "none" },
+		};
+		var chart = new google.visualization.BarChart(document.getElementById("barchart_cloud_values"));
+		chart.draw(view, options);
+	}
+	
+	function drawFrontEnd()
+	{
+		console.log("Draw FrontEnd");
+		var data = google.visualization.arrayToDataTable([
+			["Skills", "Level", { role: "style" } ],
+			["HTML5", 9, COLOR_CODE[0]],
+			["Javascript", 10, COLOR_CODE[1]],
+			["WPF", 10, COLOR_CODE[2]],
+			["Bootstrap", 9, COLOR_CODE[3]],
+			["KendoUI", 9, COLOR_CODE[4]]
+		]);
+
+		var view = new google.visualization.DataView(data);
+		view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+		var options = {
+			title: "FrontEnd",
+			width: 600,
+			height: 400,
+			bar: {groupWidth: "95%"},
+			legend: { position: "none" },
+		};
+		var chart = new google.visualization.BarChart(document.getElementById("barchart_frontend_values"));
+		chart.draw(view, options);
+	}
+	
+	function drawJavascript()
+	{
+		console.log("Draw Javascript");
+		var data = google.visualization.arrayToDataTable([
+          ['Javascript', 'Usage'],
+          ['JQuery/JQuery UI',     11],
+          ['RequireJS',      2],
+          ['VueJS',  2],
+          ['Underscore', 2]
+        ]);
+
+        var options = {
+          title: 'Javascript %',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart_javascript'));
+        chart.draw(data, options);
+	}
+	
+	function drawFramework()
+	{
+		console.log("Draw Framework");
+		var data = google.visualization.arrayToDataTable([
+          ['Framework', 'Usage'],
+          ['MVC',     11],
+          ['MVVM',      2]
+        ]);
+
+        var options = {
+          title: 'Framework %',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart_framework'));
+        chart.draw(data, options);
+	}
+	
+	function drawOthers()
+	{
+		console.log("Draw Others");
+				var data = google.visualization.arrayToDataTable([
+          ['Framework', 'Usage'],
+          ['CCNA',     5],
+          ['Android SDK',      5],
+		  ['Ubuntu',      5]
+        ]);
+
+        var options = {
+          title: 'Others',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart_others'));
+        chart.draw(data, options);
+	}
+	</script>
+</body>
+
+</html>

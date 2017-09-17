@@ -1,0 +1,81 @@
+.img-circle {
+    border-radius: 50%;
+}
+
+.panel-heading a:after {
+    font-family:'Glyphicons Halflings';
+    content:"\e114";
+    float: right;
+    color: grey;
+}
+
+.panel-heading a.collapsed:after {
+    content:"\e080";
+}
+
+.description_1
+{
+	color:green; 
+	margin-top:250pt;
+	text-align: center;
+}
+
+.borderless_table
+{
+	border:0px; 
+	width=100%;
+}
+
+table {
+  border: 1px solid #42b983;
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+th {
+  background-color: #42b983;
+  color: rgba(255,255,255,0.66);
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+td {
+  background-color: #f9f9f9;
+}
+
+th, td {
+  min-width: 120px;
+  padding: 2px 5px;
+}
+
+th.active {
+  color: #fff;
+}
+
+th.active .arrow {
+  opacity: 1;
+}
+
+.arrow {
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  opacity: 0.66;
+}
+
+.arrow.asc {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #fff;
+}
+
+.arrow.dsc {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #fff;
+}

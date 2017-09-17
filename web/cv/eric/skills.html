@@ -1,0 +1,250 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Skills</title>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+	var COLOR_CODE = ["blue", "red", "cyan", "silver", "black", "purple"];
+	
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+	function drawChart() {
+      drawProgramming();
+	  drawDataStore();
+	  drawCloud();
+	  drawFrontEnd();
+	  drawJavascript();
+	  drawFramework();
+	  drawOthers();
+	}
+  
+	function drawProgramming()
+	{
+		console.log("Draw Programming");
+		var data = google.visualization.arrayToDataTable([
+			["Skills", "Level", { role: "style" } ],
+			[".Net", 10, COLOR_CODE[0]],
+			["Java", 8.5, COLOR_CODE[1]],
+			["PHP", 10, COLOR_CODE[2]],
+			["Python", 8.5, COLOR_CODE[3]],
+			["C/C++", 9, COLOR_CODE[4]],
+			["NodeJS", 9, COLOR_CODE[5]]
+		]);
+
+		var view = new google.visualization.DataView(data);
+		view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+		var options = {
+			title: "Programming Stacks",
+			width: 600,
+			height: 400,
+			bar: {groupWidth: "95%"},
+			legend: { position: "none" },
+		};
+		var chart = new google.visualization.BarChart(document.getElementById("barchart_programming_values"));
+		chart.draw(view, options);
+	}
+	
+	function drawDataStore()
+	{
+		console.log("Draw Datastore/Cache");
+		var data = google.visualization.arrayToDataTable([
+			["Skills", "Level", { role: "style" } ],
+			["MySQL", 10, COLOR_CODE[0]],
+			["SQL Server", 9, COLOR_CODE[1]],
+			["MongoDB", 9, COLOR_CODE[2]],
+			["ElasticSearch", 8.5, COLOR_CODE[3]],
+			["Redis", 9, COLOR_CODE[4]]
+		]);
+
+		var view = new google.visualization.DataView(data);
+		view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+		var options = {
+			title: "Data Store/Cache/IPC",
+			width: 600,
+			height: 400,
+			bar: {groupWidth: "95%"},
+			legend: { position: "none" },
+		};
+		var chart = new google.visualization.BarChart(document.getElementById("barchart_datastore_values"));
+		chart.draw(view, options);
+	}
+	
+	function drawCloud()
+	{
+		console.log("Draw Cloud");
+		var data = google.visualization.arrayToDataTable([
+			["Skills", "Level", { role: "style" } ],
+			["AWS", 10, COLOR_CODE[0]],
+			["Azure", 8, COLOR_CODE[1]],
+			["Openshift", 10, COLOR_CODE[2]]
+		]);
+
+		var view = new google.visualization.DataView(data);
+		view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+		var options = {
+			title: "Cloud",
+			width: 600,
+			height: 400,
+			bar: {groupWidth: "95%"},
+			legend: { position: "none" },
+		};
+		var chart = new google.visualization.BarChart(document.getElementById("barchart_cloud_values"));
+		chart.draw(view, options);
+	}
+	
+	function drawFrontEnd()
+	{
+		console.log("Draw FrontEnd");
+		var data = google.visualization.arrayToDataTable([
+			["Skills", "Level", { role: "style" } ],
+			["HTML5", 9, COLOR_CODE[0]],
+			["Javascript", 10, COLOR_CODE[1]],
+			["WPF", 10, COLOR_CODE[2]],
+			["Bootstrap", 9, COLOR_CODE[3]],
+			["KendoUI", 9, COLOR_CODE[4]]
+		]);
+
+		var view = new google.visualization.DataView(data);
+		view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+		var options = {
+			title: "FrontEnd",
+			width: 600,
+			height: 400,
+			bar: {groupWidth: "95%"},
+			legend: { position: "none" },
+		};
+		var chart = new google.visualization.BarChart(document.getElementById("barchart_frontend_values"));
+		chart.draw(view, options);
+	}
+	
+	function drawJavascript()
+	{
+		console.log("Draw Javascript");
+		var data = google.visualization.arrayToDataTable([
+          ['Javascript', 'Usage'],
+          ['JQuery/JQuery UI',     11],
+          ['RequireJS',      2],
+          ['VueJS',  2],
+          ['Underscore', 2]
+        ]);
+
+        var options = {
+          title: 'Javascript %',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart_javascript'));
+        chart.draw(data, options);
+	}
+	
+	function drawFramework()
+	{
+		console.log("Draw Framework");
+		var data = google.visualization.arrayToDataTable([
+          ['Framework', 'Usage'],
+          ['MVC',     11],
+          ['MVVM',      2]
+        ]);
+
+        var options = {
+          title: 'Framework %',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart_framework'));
+        chart.draw(data, options);
+	}
+	
+	function drawOthers()
+	{
+		console.log("Draw Others");
+				var data = google.visualization.arrayToDataTable([
+          ['Framework', 'Usage'],
+          ['CCNA',     5],
+          ['Android SDK',      5],
+		  ['Ubuntu',      5]
+        ]);
+
+        var options = {
+          title: 'Others',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart_others'));
+        chart.draw(data, options);
+	}
+  </script>
+</head>
+<body>
+
+<div class="container">
+	<div class="row">
+        <div class="col-md-12">.col-md-12 - Testing Bootstrap</div>
+    </div>
+	<div class="row">
+        <div class="col-md-4">.col-md-4</div>
+        <div class="col-md-4">.col-md-4</div>
+        <div class="col-md-4">.col-md-4</div>
+    </div>
+	<div class="row">
+        <div class="col-md-6">.col-md-6</div>
+        <div class="col-md-6">.col-md-6</div>
+    </div>
+	
+	<div class="row">
+        <div class="col-md-6"><div id="barchart_programming_values" style="width: 900px; height: 300px;"></div></div>
+        <div class="col-md-6"><div id="barchart_datastore_values" style="width: 900px; height: 300px;"></div></div>
+	</div>
+	<div class="row" style="margin-top:50pt">
+		<div class="col-md-6"><div id="barchart_cloud_values" style="width: 900px; height: 300px;"></div></div>
+        <div class="col-md-6"><div id="barchart_frontend_values" style="width: 900px; height: 300px;"></div></div>
+    </div>
+	<div class="row" style="margin-top:50pt">
+		<div class="col-md-6"><div id="donutchart_javascript" style="width: 700px; height: 500px;"></div></div>
+        <div class="col-md-6"><div id="donutchart_framework" style="width: 700px; height: 500px;"></div></div>
+    </div>
+	<div class="row" style="margin-top:0pt">
+		<div class="col-md-6"><div id="donutchart_others" style="width: 900px; height: 500px;"></div</div>
+        <div class="col-md-6"></div>
+    </div>
+	
+</div>
+</body>
+</html>
+
