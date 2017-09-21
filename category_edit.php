@@ -8,7 +8,7 @@
       $id = $_REQUEST['id'];
       $act = $_POST['act'];
 
-      include_once('db.php');
+      include_once('db_new.php');
 
       if ($act == "EDIT") {
       	 $name = $_POST['txName'];
@@ -23,16 +23,32 @@
          $sql = "update category set Name = '$name', Remarks = '$remarks', AccountNo = '$accountno',
                  ModifiedDate = '$mdate' where CategoryID = $id";
          //echo $sql;
-         if( !$db->sql_query($sql) )
-		    $msg = 'SQL error.';
-		 else
-		    $msg = 'Category \''.$name. '\' Successfully Updated.';
+          if ($con->query($sql) === TRUE) {
+			$msg = 'Category \''.$name. '\' Successfully Updated.';
+		 } else {
+			$msg = "Error updating record: " . $con->error;
+		 }
       }
 
       else {
 
 		  $sql = "select * from category WHERE CategoryID = $id";
-		  if ( !($result = $db->sql_query($sql)) )
+		  $result = $con->query($sql);
+		  if ($result->num_rows > 0) {
+		     // output data of each row
+		     while($row = $result->fetch_assoc()) {
+			    $name = $row['Name'];
+				$remarks = $row['Remarks'];
+				$accountno = $row['AccountNo'];
+				$mdate = $row['ModifiedDate'];
+				$msg = 'Record Successfully Loaded.';
+		     }
+			} else {
+				$msg = "SQL error.";
+			}
+		  
+		  
+		  /*if ( !($result = $db->sql_query($sql)) )
 			  $msg = "SQL error.";
 
 		  if( $row = $db->sql_fetchrow($result) )
@@ -43,11 +59,11 @@
 			  $mdate = $row['ModifiedDate'];
 			  $db->sql_freeresult($result);
 			  $msg = 'Record Successfully Loaded.';
-		  }
+		  }*/
 
 	  }
 
-      $db->sql_close();
+      $con->close();
 ?>
 <html>
 <head><title>Expenses - Category</title></head>

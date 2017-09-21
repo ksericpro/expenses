@@ -9,10 +9,11 @@
 
 		$userid = $_POST['userid'];
 		$password = $_POST['password'];
-
+		
+		echo "hello = ".$userid.', '.$password;
         require_once('user_auth_fns.php');
 		$loginstr = login($userid, $password);
-		//echo "loginstr=".$loginstr;
+		echo "loginstr=".$loginstr;
 		if ( $loginstr != null ) {
 		  $msg = 'Success.';
 

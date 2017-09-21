@@ -1,7 +1,8 @@
 <?php
 	require_once('user_auth_fns.php');
 	check_valid_user();
-	include('include_fns.php');
+	include_once('db_new.php');
+	include_once('creditcard_fns.php');
 ?>
 <?php require('header.inc')?>
 
@@ -54,16 +55,21 @@
 	  $act = $_REQUEST['action'];
 
 
-      include_once('db.php');
+     // include_once('db.php');
 
       if ($act == "DELETE") {
 
       	$sql = "delete from visa_transaction where transaction_id = $id";
       	//echo $sql;
-		if( !$db->sql_query($sql) )
+		 if ($con->query($sql) === TRUE) {
+					$msg= "Record Deleted successfully";
+				} else {
+					$msg="Error Deleting record: " . $con->error;
+			   }
+		/*if( !$db->sql_query($sql) )
 		    $msg = 'SQL error.';
 	    else
-			$msg = 'Credit Card Transaction '.$id.' Successfully Deleted.';
+			$msg = 'Credit Card Transaction '.$id.' Successfully Deleted.';*/
       }
 
       if ($act == "SHOW") {
@@ -108,6 +114,7 @@ function go(ext)
               <option value="">-all-</option>
 			   <?php
 					$creditstr = getCreditcard();
+					
 					if ($creditstr !=null) {
 
 					  $credit_array = explode(':', $creditstr);
@@ -166,7 +173,19 @@ function go(ext)
 			     $sql=$sql.' ORDER BY b.transaction_date DESC';
 
   				 if (DEBUG==1) echo '<span style="font-size:6pt">'.$sql.'</span>';
-				 if( !($result = $db->sql_query($sql)) )
+				 
+				 $result = $con->query($sql);
+				$i = 0;
+				 $amt = 0;
+				if ($result->num_rows > 0) {
+					// output data of each row
+					while($row = $result->fetch_assoc()) {
+						$i++;
+						$amt += $row['amount'];
+					
+				 
+				 
+				/* if( !($result = $db->sql_query($sql)) )
 				    echo 'SQL Error';
 
 				 $i = 0;
@@ -176,7 +195,7 @@ function go(ext)
 				 	do
 				 	{
 				 	    $i++;
-						$amt += $row['amount'];
+						$amt += $row['amount'];*/
                 ?>
                 <tr bgcolor="#FFFFCC">
                   <td><div class="t1"><?php echo $row['visa_cardno'];?></div></td>
@@ -192,12 +211,9 @@ function go(ext)
                 <?php
 
                 	}
-				 	while ( $row = $db->sql_fetchrow($result) );
+				} 
 
-                $db->sql_freeresult($result);
-                }
-
-                $db->sql_close();
+                $con->close();
                 ?>
               </table>
 

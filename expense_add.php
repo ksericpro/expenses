@@ -2,7 +2,7 @@
 	require_once('user_auth_fns.php');
 	check_valid_user();
 	require_once('expense_fns.php');
-	include_once('db.php');
+	include_once('db_new.php');
 ?>
 <?php require('header.inc')?>
 <?php
@@ -62,9 +62,13 @@
                  $dcatid = $catid;
               }
 
+			  if ($con->query($sql) === TRUE) {
+					$msg = "Record Added successfully";
+				} else {
+					$msg= "Error Adding record: " . $con->error;
+			   }
 			 // echo '<br>'.$sql;
-			  if( !$db->sql_query($sql) )
-				$msg = 'SQL error.';
+
 
               break;
 
@@ -72,11 +76,11 @@
               //echo 'deleting....'.$affectedid;
               $sql = "delete from expenses where ExpensesID = $affectedid";
 
-			  //echo $sql;
-			  if( !$db->sql_query($sql) )
-				$msg = 'SQL error.';
-			  else
-			    $msg = 'Expenses '.$id.' Successfully Deleted.';
+			  if ($con->query($sql) === TRUE) {
+					$msg= "Record Deleted successfully";
+				} else {
+					$msg="Error Deleting record: " . $con->error;
+			   }
 
               break;
        case 'EDIT':
@@ -84,8 +88,25 @@
        		  $sql = "select ExpensesID, CategoryID, Amount, Remarks, ModifiedDate from expenses
                       where ExpensesID = $affectedid";
 
+			$result = $con->query($sql);
+
+			if ($result->num_rows > 0) {
+			// output data of each row
+				while($row = $result->fetch_assoc()) {
+					$expid = $row['ExpensesID'];
+					$amount = $row['Amount'];
+					$dcatid = $row['CategoryID'];
+					$remarks = $row['Remarks'];
+					$mdate = $row['ModifiedDate'];
+
+					//$db->sql_freeresult($result);
+					$msg = 'Record Successfully Loaded.';
+				}
+			} else {
+				 $msg = "SQL error.";
+			}
               //echo $sql;
-			  if ( !($result = $db->sql_query($sql)) )
+			 /* if ( !($result = $db->sql_query($sql)) )
 				  $msg = "SQL error.";
 
 			  if( $row = $db->sql_fetchrow($result) )
@@ -98,7 +119,7 @@
 
 				  $db->sql_freeresult($result);
 				  $msg = 'Record Successfully Loaded.';
-		      }
+		      }*/
 
               break;
       }
@@ -245,11 +266,25 @@
                          where c.CategoryID = e.CategoryID and e.UserID = $userid
                          and e.ExpensesDate = '$date'";
 
-                 //echo '<tr></td>'.$sql.'</td></tr>';
-				 if( !($result = $db->sql_query($sql)) )
-					echo '<tr></td>SQL Error</td></tr>';
-
+				 $result = $con->query($sql);
 				 $i = 0;
+				 $totalamount = 0;
+				 if ($result->num_rows > 0) {
+					// output data of each row
+					while($row = $result->fetch_assoc()) {
+						$expid = $row['ExpensesID'];
+						$amount = $row['Amount'];
+						$categoryname = $row['Name'];
+						$mdate = $row['ModifiedDate'];
+						$i++;
+						$totalamount +=$amount;
+					
+
+                 //echo '<tr></td>'.$sql.'</td></tr>';
+				 //if( !($result = $db->sql_query($sql)) )
+				//	echo '<tr></td>SQL Error</td></tr>';
+
+				/* $i = 0;
 				 $totalamount = 0;
 				 if ( $row = $db->sql_fetchrow($result) )
 				 {
@@ -260,7 +295,7 @@
 						$categoryname = $row['Name'];
 						$mdate = $row['ModifiedDate'];
 						$i++;
-						$totalamount +=$amount;
+						$totalamount +=$amount;*/
 
                 ?>
 
@@ -276,11 +311,10 @@
 
                 <?php
 
-                	}
-				 	while ( $row = $db->sql_fetchrow($result) );
-
-                $db->sql_freeresult($result);
-                }
+                	} //end while 
+				 } else { //end if
+					echo "<br/>0 results";
+				 }
 
                 ?>
 
@@ -313,7 +347,7 @@
 -->
 </script>
 <?php
-	$db->sql_close();
+	$con->close();
 	require('footer.inc');
   ?>
 </body>

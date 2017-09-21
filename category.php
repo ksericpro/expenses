@@ -8,16 +8,24 @@
 	  $id = $_REQUEST['id'];
 	  $act = $_REQUEST['action'];
 
-      include_once('db.php');
+      //include_once('db.php');
+	  include_once('db_new.php');
 
       if ($act == "DELETE") {
 
       	$sql = "delete from category where CategoryID = $id";
       	//echo $sql;
-		if( !$db->sql_query($sql) )
+		
+		 if ($con->query($sql) === TRUE) {
+			$msg = 'Category \''.$id. '\' Successfully Deleted.';
+		 } else {
+			$msg = "Error updating record: " . $con->error;
+		 }
+		 
+		/*if( !$db->sql_query($sql) )
 		    $msg = 'SQL error.';
 	    else
-			$msg = 'Category '.$id.' Successfully Deleted.';
+			$msg = 'Category '.$id.' Successfully Deleted.';*/
       }
 ?>
 <html>
@@ -65,14 +73,29 @@
 
 				 $sql = 'select * from category where userid = '.$_SESSION['userid']." order by Name";
 
-				 if( !($result = $db->sql_query($sql)) )
-				    echo 'SQL Error';
-
+				 $result = $con->query($sql);
+				 
 				 $i = 0;
-				 if ( $row = $db->sql_fetchrow($result) )
-				 {
-				 	do
-				 	{
+				 if ($result->num_rows > 0) {
+					// output data of each row
+					while($row = $result->fetch_assoc()) {
+						$name = $row['Name'];
+				 		$remarks = $row['Remarks'];
+				 		$accountno = $row['AccountNo'];
+				 		$mdate = $row['ModifiedDate'];
+				 	    $i++;
+						
+						//return $str;
+					
+				 
+				 //if( !($result = $db->sql_query($sql)) )
+				 //   echo 'SQL Error';
+
+				 
+				 //if ( $row = $db->sql_fetchrow($result) )
+				 //{
+				 	//do
+				 //	{
 				 		$name = $row['Name'];
 				 		$remarks = $row['Remarks'];
 				 		$accountno = $row['AccountNo'];
@@ -91,13 +114,12 @@
 
                 <?php
 
-                	}
-				 	while ( $row = $db->sql_fetchrow($result) );
+                	} //end while
+					mysqli_free_result($result);
+				 } //end if
 
-                $db->sql_freeresult($result);
-                }
-
-                $db->sql_close();
+				$con->close();
+                //$db->sql_close();
                 ?>
               </table>
               </td>

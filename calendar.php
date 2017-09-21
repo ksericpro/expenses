@@ -8,7 +8,7 @@
 
    <?php
 
-     include_once('db.php');
+     include_once('db_new.php');
      include_once('general_fns.php');
 
      ///////////////////////////
@@ -98,11 +98,13 @@
   	          ModifiedDate = '$mdate'
   	          where SettingsID = $settingsid";
 
+	   if ($con->query($sql) === TRUE) {
+			$msg = 'Settings Successfully Updated.';
+	   } else {
+			 $msg = 'SQL error.';
+	   }
 	   //echo $sql;
-	  if( !$db->sql_query($sql) )
-	     $msg = 'SQL error.';
-	   else
-		 $msg = 'Settings Successfully Updated.';
+	  
 
   	  } else {
   	    /////////////
@@ -113,8 +115,36 @@
   	            Graphbkcolor, Graphlinecolor, Graphaxiscolor, Graphtextcolor
   	            from settings where Settingsid = $settingsid";
   	    //echo $sql;
+		
+		$result = $con->query($sql);
 
-	    if ( !($result = $db->sql_query($sql)) )
+		if ($result->num_rows > 0) {
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+			  $graphwidth = $row['Graphwidth'];
+			  $graphheight = $row['Graphheight'];
+			  $graphborder = $row['Graphborder'];
+			  $graphypoints = $row['Graphypoints'];
+			  $graphbkcolor = $row['Graphbkcolor'];
+			  $graphlinecolor = $row['Graphlinecolor'];
+			  $graphaxiscolor = $row['Graphaxiscolor'];
+  	    	  $graphtextcolor = $row['Graphtextcolor'];
+			  $gtype = $row['Graphtype'];
+			  //$db->sql_freeresult($result);
+			  $msg = "Settings Successfully Loaded.";
+
+			  $graphbkhexcolor = convertColorStr($graphbkcolor);
+			  $graphlinehexcolor = convertColorStr($graphlinecolor);
+			  //echo $graphlinehexcolor;
+			  $graphaxishexcolor = convertColorStr($graphaxiscolor);
+			  $graphtexthexcolor = convertColorStr($graphtextcolor);
+			}
+			mysqli_free_result($result);
+		} else {
+			echo "<br/>0 results";
+		}
+
+	  /*  if ( !($result = $db->sql_query($sql)) )
 			  $msg = "SQL error.";
 
 		if( $row = $db->sql_fetchrow($result) )
@@ -136,11 +166,11 @@
 			  //echo $graphlinehexcolor;
 			  $graphaxishexcolor = convertColorStr($graphaxiscolor);
 			  $graphtexthexcolor = convertColorStr($graphtextcolor);
-		  }
+		  }*/
 
   	  }
  ?>
-<head><title>stocks</title></head>
+
 <link rel="stylesheet" href="style.css">
 <script language="JavaScript" src="functions.js"></script>
 <script language="JavaScript">
@@ -321,27 +351,27 @@
                   <td><font color="#993366">Background</font></td>
                   <td><font color="#993366">
                     <input type="text" name="txbkcolor" ID="graphbkcolor" size="2" class=s1 readonly=1 <?php fillValues($graphbkhexcolor, $graphbkcolor); ?> >
-                    <a class=s1 href="javascript:openColorPicker('colorpicker.php?', 'graphbkcolor');COLOR_PICKER.focus();" title="color picker"><img src="images/choose.gif" border=0 alt="@"></a>
+                    <a class=s1 href="javascript:openColorPicker('jscolor-picker.php?', 'graphbkcolor', '<?php echo $graphbkhexcolor?>');COLOR_PICKER.focus();" title="color picker"><img src="images/choose.gif" border=0 alt="@"></a>
                     </font></td>
                 </tr>
                 <tr>
                   <td><font color="#993366">Line Color</font></td>
                   <td><font color="#993366">
                     <input type="text" name="txlinecolor" ID="graphlinecolor" size="2" class=s1 readonly=1 <?php fillValues($graphlinehexcolor, $graphlinecolor); ?> >
-                    <a class=s1 href="javascript:openColorPicker('colorpicker.php?', 'graphlinecolor');COLOR_PICKER.focus();" title="color picker"><img src="images/choose.gif" border=0 alt="@"></a>
+                    <a class=s1 href="javascript:openColorPicker('jscolor-picker.php?', 'graphlinecolor', '<?php echo $graphlinehexcolor?>');COLOR_PICKER.focus();" title="color picker"><img src="images/choose.gif" border=0 alt="@"></a>
                     </font></td>
                 </tr>
                 <tr>
                   <td><font color="#993366">Axis Color</font></td>
                   <td><font color="#993366">
                     <input type="text" name="txaxiscolor" ID="graphaxiscolor" size="2" class=s1 readonly=1 <?php fillValues($graphaxishexcolor, $graphaxiscolor); ?> >
-                    <a class=s1 href="javascript:openColorPicker('colorpicker.php?', 'graphaxiscolor');COLOR_PICKER.focus();" title="color picker"><img src="images/choose.gif" border=0 alt="@"></a></font></td>
+                    <a class=s1 href="javascript:openColorPicker('jscolor-picker.php?', 'graphaxiscolor', '<?php echo $graphaxishexcolor?>');COLOR_PICKER.focus();" title="color picker"><img src="images/choose.gif" border=0 alt="@"></a></font></td>
                 </tr>
                 <tr>
                   <td><font color="#993366">Text Color</font></td>
                   <td><font color="#993366">
                     <input type="text" name="txtextcolor" ID="graphtextcolor" size="2" class=s1 readonly=1 <?php fillValues($graphtexthexcolor, $graphtextcolor); ?> >
-                    <a class=s1 href="javascript:openColorPicker('colorpicker.php?', 'graphtextcolor');COLOR_PICKER.focus();" title="color picker"><img src="images/choose.gif" border=0 alt="@"></a></font></td>
+                    <a class=s1 href="javascript:openColorPicker('jscolor-picker.php?', 'graphtextcolor', '<?php echo $graphtexthexcolor?>');COLOR_PICKER.focus();" title="color picker"><img src="images/choose.gif" border=0 alt="@"></a></font></td>
                 </tr>
                 <tr>
                   <td><font color="#993366">Border</font></td>
@@ -385,13 +415,11 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
 
-          <td width="40%"><div align="center"><a href="main.php" title="Main" class=s1><font size="-2">Main</font></a>&nbsp;|&nbsp;<a href="?" title="Current" class=s1><font size="-2">Current</font></a>
-
-            &nbsp;|&nbsp;<a title="log off" class=s1 href="logout.php">log
-			off</a></div></td>
+          <td width="40%"><div align="center"><a href="main.php" title="Main" class=s1><font size="-2">Main</font></a>&nbsp;|&nbsp;<a href="?" title="Current" class=s1><font size="-2">Current</font></a>&nbsp;|&nbsp;<a title="log off" class=s1 href="logout.php">log
+              off</a></div></td>
                 <td width="20%" bgcolor="#FFFFFF">
                   <div align=center style="font-size:18pt"><?php echo $currentyear?></div></td>
-                  <td width="40%" align="right" valign="center"><a href="javascript:openNewWindow('stock_add.php','500','500');" title="Edit Stocks" class=s1><font size="-2">Edit Stocks</font></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:openNewWindow('calculator_new.html','350','400');" title="Financial Calculator" class=s1><font size="-2">Financial Calculator</font></a> </td>
+                  <td width="40%" align="right" valign="top">&nbsp; </td>
           </tr>
         </table>
 
@@ -400,7 +428,7 @@
   </tr>
   <tr>
     <td colspan=3>
-	<p align="center"><b>Stocks</b></td>
+	<p align="center"><b><font size="2">Expenses</font></b></p></td>
   </tr>
   <tr>
     <td colspan="3"><table border=1 align="center" cellpadding=1 cellspacing=0 bgcolor="#FFFF99" style="border-collapse: collapse" bordercolor="#cccccc">
@@ -417,7 +445,7 @@
           <TD><div align=center class=t2 style="color:#FF0033;font-size:12pt"><b>Sat</b></div></TD>
         </TR>
         <?php
-     require('constants.php');
+     require_once('constants.php');
 
      $num = 1;
      $newrow = 1;
@@ -439,43 +467,47 @@
 			echo $BLANK_CELL;
 		  else {
 		    $datestr = $currentyear.'-'.$currentmonth.'-'.$num;
-		    $window = "javascript:openNewWindow('stock_transaction_add.php?date=$datestr','700','750');";
+		    $window = "javascript:openNewWindow('expense_add.php?date=$datestr','500','550');";
 
 
 			/////////////////////////////
 			// Add Total Amount
 			///////////////////////////////
-			$sql = "select distinct(a.stock_name) as 'str1' from stocks a, stocks_transaction b
-			       where b.UserID = $userid
-			       and a.stock_id = b.stock_id
-                   and b.buy_date = '$datestr'";
+			$sql = "select SUM(Amount) as 'str1' from expenses
+			       where UserID = $userid
+                   and ExpensesDate = '$datestr'";
+				   
+			$result = $con->query($sql);
 
-             //echo $sql;
-			if ( !($result = $db->sql_query($sql)) )
+			if ($result->num_rows > 0) {
+				// output data of each row
+				while($row = $result->fetch_assoc()) {
+				  $amount = $row['str1'];
+				  $totalamount += $amount;
+				  //$db->sql_freeresult($result);
+				}
+				
+				mysqli_free_result($result);
+			} else {
+				echo "SQL error.";
+			}
+			/*if ( !($result = $db->sql_query($sql)) )
 				  echo "SQL error.";
-
-			$stock_name = "";
+            $amount = "";
 			if( $row = $db->sql_fetchrow($result) )
-			 {
-			 do
-			 {
-				  if ($stock_name=="")
-				  	$stock_name = $row['str1'];
-				  else
-				    $stock_name = $stock_name.'<br>'.$row['str1'];
+			  {
+				  $amount = $row['str1'];
+				  $totalamount += $amount;
+				  $db->sql_freeresult($result);
+		    }*/
 
-		     }
-		    while ( $row = $db->sql_fetchrow($result) );
-		    $db->sql_freeresult($result);
-		    }
+		    if (strlen($amount) !=0) $amount = '<font color=#996666><i>$'.round($amount,2).'</i></font>';
+		    else $amount = '&nbsp;';
 
-		    if (strlen($stock_name) !=0) $stock_name = '<span style="color:#996666;font-size:7pt;font-family:arial;">'.$stock_name.'</span>';
-		    else $stock_name = '&nbsp;';
-
-			echo '<td bgcolor="'.$bgcolor.'"><div align=center class=t3><table cellpadding=0 cellspacing=0><tr><td align=center>'.($num++).'</td></tr>
+			echo '<td bgcolor="'.$bgcolor.'"><div align=center class=t3><table><tr><td align=center>'.($num++).'</td></tr>
 			      <tr><td align=center><a href="'.$window.
 			      '" title="Input"><img src="images/new.gif" border=0></a></td></tr>
-			      <tr><td align=left>'.$stock_name.'</td></tr>
+			      <tr><td>'.$amount.'</td></tr>
 			      </table></div></td>';
 
 		  }
@@ -502,6 +534,7 @@
 </td>
 
     <td align="left" width="20%">
+     <i>&nbsp;Click to see breakdown</i>
 	  <div class="t1">
 	    <table width="80%"  cellspacing="0" cellpadding="0" border="1" style="border-collapse:collapse">
           <tr bgcolor="#9999CC">
@@ -509,137 +542,64 @@
                 Summary </font></div></td>
           </tr>
           <tr bgcolor="#FFFFCC">
-            <td><b><font color="#993366">Profit/Loss</font></b></td>
+            <td><b><font color="#993366">Total</font></b></td>
             <td><font color="#993366"><b>$<span id="totalamount"></span></b></font></td>
           </tr>
 
 	  <?php
-			$sql = "select a.stock_name, SUM(b.profit) 'profit' from stocks a, stocks_transaction b
-			        where b.UserID = $userid
-			        and a.stock_id = b.stock_id
-					and month(b.buy_date) = $currentmonth
-					and year(b.buy_date) = $currentyear
-					and b.status = 'CLOSED'
-					group by a.stock_name
-					order by a.stock_name";
+			$sql = "select c.CategoryID, c.Name, SUM(e.Amount) as 'amt' from expenses e, category c where
+					 c.CategoryID = e.CategoryID and c.UserID = $userid
+					 and month(e.ExpensesDate) = $currentmonth
+					 and year(e.ExpensesDate) = $currentyear
+					 group by c.Name
+					 order by c.Name";
 
-			if ( !($result = $db->sql_query($sql)) ) {
+			$result = $con->query($sql);
+
+			if ($result->num_rows > 0) {
+				// output data of each row
+				while($row = $result->fetch_assoc()) {
+					 $catid = $row['CategoryID'];
+					$name = $row['Name'];
+					$amount = $row['amt'];
+					$value = sprintf("%01.2f", $amount);
+
+					$openstr='category_details.php?catid='.$catid.'&month='.$currentmonth.'&year='.$currentyear;
+					$jstr= "javascript:openNewWindow('".$openstr."','500','450')";
+
+					echo '<tr><td><font color=#993366><a class=s1 href="'.$jstr.'">'.$name.'</a></font></td><td><font color=#993366> $'.$value.'</font></td></tr>';
+				}
+				
+				mysqli_free_result($result);
+			} else {
+				echo "SQL error.";
+			}
+			/*if ( !($result = $db->sql_query($sql)) ) {
 			  echo "SQL error.";
 			}
 
 			 //echo $sql;
-		   $totalamount = 0.0;
 		   if ( $row = $db->sql_fetchrow($result) )
 			 {
 				do
 				{
-				 $name = $row['stock_name'];
-		 		 $profit = $row['profit'];
-		 		 $value = sprintf("%01.2f", $profit);
-                 $totalamount += $value;
-	   		 	 echo '<tr><td><font color=#993366>'.$name.'</font></td><td><font color=#993366> $'.$value.'</font></td></tr>';
+                 $catid = $row['CategoryID'];
+				 $name = $row['Name'];
+		 		 $amount = $row['amt'];
+		 		 $value = sprintf("%01.2f", $amount);
+
+		 		 $openstr='category_details.php?catid='.$catid.'&month='.$currentmonth.'&year='.$currentyear;
+		 		 $jstr= "javascript:openNewWindow('".$openstr."','500','450')";
+
+	   		 	 echo '<tr><td><font color=#993366><a class=s1 href="'.$jstr.'">'.$name.'</a></font></td><td><font color=#993366> $'.$value.'</font></td></tr>';
 	      	}
 	      	while ( $row = $db->sql_fetchrow($result) );
 
 	        $db->sql_freeresult($result);
-	       }
+	       }*/
     ?>
+
         </table>
-<br>
-
-  <table width="80%"  cellspacing="0" cellpadding="0" border="1" style="border-collapse:collapse">
-          <tr bgcolor="#9999CC">
-            <td colspan="4"> <div align="center"><font color="#FFFFCC">Outstanding Position</font></div></td>
-          </tr>
-
-          <tr bgcolor="#FFFFCC">
-            <td><b><font color="#993366">Stock</font></b></td>
-            <td><b><font color="#993366">Type</font></b></td>
-            <td><b><font color="#993366">Buy Date</font></b></td>
-            <td><b><font color="#993366">Amt</font></b></td>
-          </tr>
-
-	  <?php
-			$sql = "select a.stock_name, b.payment_medium, b.buy_total, b.buy_date
-					from stocks a, stocks_transaction b
-			        where b.UserID = $userid
-			        and a.stock_id = b.stock_id
-					and month(b.buy_date) = $currentmonth
-					and year(b.buy_date) = $currentyear
-					and b.status <> 'CLOSED'
-					order by a.stock_name";
-
-			if ( !($result = $db->sql_query($sql)) ) {
-			  echo "SQL error.";
-			}
-
-			 //echo $sql;
-		   //$totalamount = 0.0;
-		   if ( $row = $db->sql_fetchrow($result) )
-			 {
-				do
-				{
-				 $name = $row['stock_name'];
-				 $payment_medium = $row['payment_medium'];
-		 		 $buy_total = $row['buy_total'];
-		 		 $buy_date = $row['buy_date'];
-		 		 $buy_date = date('Y-m-d', strtotime($buy_date));
-		 		 $value = sprintf("%01.2f", $buy_total);
-           //      $totalamount += $value;
-	   		 	 echo '<tr><td><font color=#993366>'.$name.'</font></td><td><font color=#993366>'.$payment_medium.'</font></td><td><font color=#993366>'.$buy_date.'</font></td><td><font color=#993366>$'.$value.'</font></td></tr>';
-	      	}
-	      	while ( $row = $db->sql_fetchrow($result) );
-
-	        $db->sql_freeresult($result);
-	       }
-    ?>
-    </table>
-<br>
-
-<table width="80%"  cellspacing="0" cellpadding="0" border="1" style="border-collapse:collapse">
- <tr bgcolor="#9999CC">
-     <td> <div align="center"><font color="#FFFFCC">Transaction Volume</font></div></td>
- </tr>
- <tr><td align='center'>
-
-
-  <?php
- 			$sql = "select b.quantity
- 					from stocks a, stocks_transaction b
- 			        where b.UserID = $userid
- 			        and a.stock_id = b.stock_id
- 					and month(b.buy_date) = $currentmonth
- 					and year(b.buy_date) = $currentyear
- 					and b.status = 'CLOSED'";
-
- 			if ( !($result = $db->sql_query($sql)) ) {
- 			  echo "SQL error.";
- 			}
-
- //echo $sql;
- 		   $total = 0.0;
- 		   if ( $row = $db->sql_fetchrow($result) )
-			 {
-				do
-				{
-				 $quantity = $row['quantity'];
-				 $total +=$quantity*2;
-
-	      	}
-	      	while ( $row = $db->sql_fetchrow($result) );
-
-	        $db->sql_freeresult($result);
-	       }
-
-	       echo '<font color=#993366>'.$total.'</font>';
-?>
-
-
-
- </td></tr>
- </table>
-
-
 	</div>
     </td>
 </tr></table>
@@ -652,6 +612,6 @@
 
 </body>
 <?php
-$db->sql_close();
+$con->close();
 require('footer.inc')
 ?>

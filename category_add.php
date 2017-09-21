@@ -19,7 +19,7 @@
 
          //echo '<br>'.$name.', '.$remarks;
 
-         include_once('db.php');
+         include_once('db_new.php');
 
          $datetime = date('Y-m-d H:i:s');
          $sql = "insert into category(Name, Remarks, AccountNo, UserID, ModifiedDate)
@@ -27,13 +27,19 @@
                  $_SESSION['userid'].", '".$datetime."')";
 
          //echo '<br>'.$sql;
+		 
+		 if ($con->query($sql) === TRUE) {
+			$msg = 'Category \''.$name. '\' Successfully Added.';
+		 } else {
+			$msg = "Error updating record: " . $con->error;
+		 }
 
-         if( !$db->sql_query($sql) )
+         /*if( !$db->sql_query($sql) )
 		    $msg = 'SQL error.';
 		 else
 		    $msg = 'Category \''.$name. '\' Successfully Added.';
-
-         $db->sql_close();
+		 */
+         $con->close();
       }
 ?>
 <html>

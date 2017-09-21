@@ -1,4 +1,4 @@
-<?php include_once('include_fns.php')?>
+
 <?php
 	require_once('user_auth_fns.php');
 	check_valid_user();
@@ -9,7 +9,7 @@
      $userid = $_SESSION['userid'];
      $question = $_REQUEST['question'];
      echo $question;
-     include_once('db.php');
+     include_once('db_new.php');
 
      if ($question!="") {
         $cat_name="";
@@ -83,7 +83,7 @@
 
 
 
-		     $db->sql_close();
+		     $con->close();
           ?>
 		</td>
 		</table>

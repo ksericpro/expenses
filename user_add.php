@@ -19,29 +19,50 @@
             $role = addslashes($role);
          }
 
-         include_once('db.php');
+         include_once('db_new.php');
 
          $mdate = date('Y-m-d H:i:s');
          $sql = "insert into user(Name, LoginID, Password , Role, ModifiedDate)
                  values('".$name."', '".$loginid."', sha1('".$password."'), '".$role."', '".$mdate."')";
 
          //echo '<br>'.$sql;
+		 if ($con->query($sql) === TRUE) {
+			$msg = "Record added successfully";
+		} else {
+			 $msg = 'SQL error. Probably due to duplicate records.';
+		}
 
-         if( !$db->sql_query($sql) )
-		    $msg = 'SQL error. Probably due to duplicate records.';
+        /* if( !$db->sql_query($sql) )
+		    $msg = 'SQL error. Probably due to duplicate records.';*/
 
-		 $insertedid = $db->sql_nextid();
-		 if ($insertedid != null)
+		 $sql = "SELECT LAST_INSERT_ID() as 'id'";
+		 $result = $con->query($sql);
+
+		 if ($result->num_rows > 0) {
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+				$insertedid = $row["id"];
+			}
+		 } 
+		 
+		 //$insertedid = $db->sql_nextid();
+		 if ($insertedid != 0)
 		 	$sql = "insert into settings(UserID, ModifiedDate) values($insertedid, '$mdate')";
 
-		 if( !$db->sql_query($sql) )
+	     if ($con->query($sql) === TRUE) {
+			$msg = 'User \''.$name. '\' & his/her Settings Successfully Added.'
+		} else {
+			$msg = 'SQL Error';
+		}
+		
+		/* if( !$db->sql_query($sql) )
 		    $msg = 'SQL error.';
 		 else
 		    $msg = 'User \''.$name. '\' & his/her Settings Successfully Added.';
-
+*/
 		 //echo '<br>'.$insertedid;
-
-         $db->sql_close();
+		  $con->close();
+         //$db->sql_close();
       }
 ?>
 <html>

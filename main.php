@@ -6,6 +6,12 @@
 ?>
 <?php require('header.inc')?>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<SCRIPT language="JavaScript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/>
 <SCRIPT language="JavaScript" src="functions.js"></SCRIPT>
 <script language="JavaScript" type="text/JavaScript">
 <!--
@@ -45,28 +51,37 @@ function MM_swapImage() { //v3.0
         </tr>
         <tr>
           <td><div align=center>
-		  
-		      <table border="0"><tr><td style="margin-top:5pt;font-size:5pt;">
-		      <a href="calendar.php" title="expenses" class="s2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('expenses','','make_button.php?button_text=Expenses&color=red',1)">
+			  <h2>Menu</h2>
+		      <table border="0"><tr><td style="margin-top:50pt;font-size:5pt;">
+		      <button type="button" class="btn btn-primary" title="expenses" onclick="window.location.href='calendar.php';">Expenses</button>
+			  <!--<a href="calendar.php" title="expenses" class="s2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('expenses','','make_button.php?button_text=Expenses&color=red',1)">
 		      <img name="expenses" src="make_button.php?button_text=Expenses&color=blue&fontsize=16" border="0" alt="&gt;Expenses&lt;"></a>
-              <br>
-			  <a href="creditcard.php" title="creditcard" class="s2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('creditcard','','make_button.php?button_text=Credit+Card&color=red',1)">
+              -->
+			  <!--<br>-->
+			   <button type="button" class="btn btn-primary" title="Credit Card" onclick="window.location.href='creditcard.php';">Credit Card</button>
+			<!--  <a href="creditcard.php" title="creditcard" class="s2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('creditcard','','make_button.php?button_text=Credit+Card&color=red',1)">
 			  <img name="creditcard" src="make_button.php?button_text=Credit+Card&color=blue&fontsize=16" border="0" alt="&gt;Credit Card&lt;"></a>
-			  <br>
+			  <br>-->
 			  <!--<a href="assets.php" title="assets" class="s2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('assets','','make_button.php?button_text=Assets&color=red',1)">
 			  <img name="assets" src="make_button.php?button_text=Assets&color=blue&fontsize=16" border="0" alt="&gt;Assets&lt;"></a>
 			  <br>-->
-			  <a href="reports.php" title="reports" class="s2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('reports','','make_button.php?button_text=Reports&color=red',1)">
+			  <button type="button" class="btn btn-primary" title="Stocks" onclick="window.location.href='stocks.php';">Stocks</button>
+			  <button type="button" class="btn btn-primary" title="Reports" onclick="window.location.href='reports.php';">Reports</button>
+			  <button type="button" class="btn btn-primary" title="Categories" onclick="window.location.href='category.php';">Categories</button>
+			  <button type="button" class="btn btn-primary" title="Users" onclick="window.location.href='user.php';">Users</button>
+			  <!--<a href="reports.php" title="reports" class="s2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('reports','','make_button.php?button_text=Reports&color=red',1)">
 			  <img name="reports" src="make_button.php?button_text=Reports&color=blue&fontsize=16" border="0" alt="&gt;Reports&lt;"></a>
-			  <br>
-              <a href="category.php" title="category" class="s2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('category','','make_button.php?button_text=Category&color=red',1)">
+			  <br>-->
+              <!--<a href="category.php" title="category" class="s2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('category','','make_button.php?button_text=Category&color=red',1)">
               <img name="category" src="make_button.php?button_text=Category&color=blue&fontsize=16" border="0" alt="&gt;Category&lt;"></a>
-			  <br>
-              <a href="stocks.php" title="stocks" class="s2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('stocks','','make_button.php?button_text=Stocks&color=red',1)">
+			  <br>-->
+             <!-- <a href="stocks.php" title="stocks" class="s2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('stocks','','make_button.php?button_text=Stocks&color=red',1)">
               <img name="stocks" src="make_button.php?button_text=Stocks&color=blue&fontsize=16" border="0" alt="&gt;Stocks&lt;"></a>
-			  <br>
-              <a href="user.php" title="users" class="s2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('users','','make_button.php?button_text=Users&color=red',1)">
-              <img name="users" src="make_button.php?button_text=Users&color=blue&fontsize=16" border="0" alt="&gt;Users&lt;"></a>
+			  <br>-->
+              <!--<a href="user.php" title="users" class="s2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('users','','make_button.php?button_text=Users&color=red',1)">
+              <img name="users" src="make_button.php?button_text=Users&color=blue&fontsize=16" border="0" alt="&gt;Users&lt;"></a>-->
+			  <p/>
+			  <p/>
 			  </td></tr></table>
 			</div>
 			</td>

@@ -8,11 +8,16 @@
 	$dbuser = 'b3f987052cc4f0';
 	$dbpasswd = '26a37061';
 
+   define ('mysql_host', 'us-cdbr-iron-east-05.cleardb.net');
+   define ('mysql_user', 'b3f987052cc4f0');
+   define ('mysql_password', '26a37061');
+   define ('mysql_dbname', 'heroku_4b241068d3bb4b6');
+   
    /////////////////
    // Constants
    /////////////////
    $BLANK_CELL = '<td bgcolor="#eeeeee">&#160;</td>';
-   $MAINDIR = 'Location:';
+   $MAINDIR = 'Location: http://localhost:9001/expenses';
    $IMGDIR = 'images/';
    define ('ROW_MAX', 7);
    define ('PRINT_COMMENTS', 0);

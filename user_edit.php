@@ -8,7 +8,7 @@
       $id = $_REQUEST['id'];
       $act = $_POST['act'];
 
-      include_once('db.php');
+      include_once('db_new.php');
 
       if ($act == "EDIT") {
       	 $name = $_POST['txName'];
@@ -32,16 +32,34 @@
          $sql = $sql." where UserID = $id";
 
          //echo $sql;
-         if( !$db->sql_query($sql) )
-		    $msg = 'SQL error.';
-		 else
-		    $msg = 'User \''.$name. '\' Successfully Updated.';
+		if ($con->query($sql) === TRUE) {
+			$msg = 'User \''.$name. '\' Successfully Updated.';
+		} else {
+			$msg = 'SQL Error.';
+		}
+        
       }
 
       else {
 
 		  $sql = "select * from user WHERE UserID = $id";
-		  if ( !($result = $db->sql_query($sql)) )
+		  
+		  $result = $con->query($sql);
+
+		if ($result->num_rows > 0) {
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+				$name = $row['Name'];
+				$loginid = $row['LoginID'];
+				$role = $row['Role'];
+				$password = $row['Password'];
+				$mdate = $row['ModifiedDate'];
+
+				//$db->sql_freeresult($result);
+				$msg = 'Record Successfully Loaded.';
+			}
+		} 
+		  /*if ( !($result = $db->sql_query($sql)) )
 			  $msg = "SQL error.";
 
 		  if( $row = $db->sql_fetchrow($result) )
@@ -54,14 +72,14 @@
 
 			  $db->sql_freeresult($result);
 			  $msg = 'Record Successfully Loaded.';
-		  }
+		  }*/
 
 	  }
 
-      $db->sql_close();
+      $con->close();
 ?>
 <html>
-<head><title>Expenses - Category</title></head>
+<head><title>Expenses - User Edit</title></head>
 <link rel="stylesheet" href="style.css">
 <SCRIPT language="JavaScript" src="functions.js"></SCRIPT>
 <script language="javascript">

@@ -10,14 +10,17 @@
       $mth = $_REQUEST['month'];
       $year = $_REQUEST['year'];
 
-      include_once('db.php');
+      include_once('db_new.php');
 
 	  $sql = "select ExpensesDate, Amount, Remarks from expenses WHERE userid = $userid AND CategoryID=$catid AND
 	          month(ExpensesDate)=$mth AND year(ExpensesDate)=$year";
 
 	  //echo $sql;
-	  if ( !($result = $db->sql_query($sql)) )
-		  $msg = "SQL error.";
+	  
+	  $result = $con->query($sql);
+	  
+	  /*if ( !($result = $db->sql_query($sql)) )
+		  $msg = "SQL error.";*/
 
 ?>
 <html>
@@ -44,14 +47,23 @@
 
  <?php
             $i=0;
-            if ( $row = $db->sql_fetchrow($result) )
+			
+			if ($result->num_rows > 0) {
+				// output data of each row
+				while($row = $result->fetch_assoc()) {
+					$expdate = $row['ExpensesDate'];
+		  			$amount = $row['Amount'];
+		  			$remarks = $row['Remarks'];
+			        $i++;
+				
+           /* if ( $row = $db->sql_fetchrow($result) )
 		  	 {
 		  		do
 		  		{
 		  			$expdate = $row['ExpensesDate'];
 		  			$amount = $row['Amount'];
 		  			$remarks = $row['Remarks'];
-			        $i++;
+			        $i++;*/
 
 			?>
           <tr>
@@ -66,14 +78,12 @@
           <?php
 
 
-		  	  	}
-		  			while ( $row = $db->sql_fetchrow($result) );
-
-		  		  $db->sql_freeresult($result);
-		  	  }
+					}//end while
+				mysqli_free_result($result);
+			  } //end if
 		  	  $msg = 'Record Successfully Loaded.';
 
-            $db->sql_close();
+            $con->close();
           ?>
 
 

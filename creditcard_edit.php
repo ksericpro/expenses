@@ -1,7 +1,7 @@
 <?php
 	require_once('user_auth_fns.php');
 	check_valid_user();
-	include('include_fns.php');
+	include('creditcard_fns.php');
 ?>
 <?php require('header.inc')?>
 <?php

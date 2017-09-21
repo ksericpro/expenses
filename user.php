@@ -9,26 +9,42 @@
 	  $id = $_REQUEST['id'];
 	  $act = $_REQUEST['action'];
 
-      include_once('db.php');
+      include_once('db_new.php');
 
       if ($act == "DELETE") {
 
       	$sql = "delete from user where UserID = $id";
       	//echo $sql;
-		if( !$db->sql_query($sql) )
-		    $msg = 'SQL error.';
+		//if( !$db->sql_query($sql) )
+		 //   $msg = 'SQL error.';
+		if ($con->query($sql) === TRUE) {
+			$msg = 'User Successfully Deleted.';
+		 } else {
+			$msg = "Error deleting record: " . $con->error;
+		 }
 
 		$sql = "delete from settings where UserID = $id";
 
-		if( !$db->sql_query($sql) )
-		    $msg = 'SQL error.';
+		if ($con->query($sql) === TRUE) {
+			$msg = 'Setting \''.$id. '\' Successfully Deleted.';
+		 } else {
+			$msg = "Error deleting record: " . $con->error;
+		 }
+		//if( !$db->sql_query($sql) )
+		//    $msg = 'SQL error.';
 
 		$sql = "delete from expenses where UserID = $id";
-		if( !$db->sql_query($sql) )
+		
+		if ($con->query($sql) === TRUE) {
+			$msg = 'User '.$id.' , his/her Settings & Expenses Successfully Deleted.';
+		 } else {
+			$msg = "Error deleting record: " . $con->error;
+		 }
+		/*if( !$db->sql_query($sql) )
 		    $msg = 'SQL error.';
 		else
 		    $msg = 'User '.$id.' , his/her Settings & Expenses Successfully Deleted.';
-
+*/
       }
 ?>
 <html>
@@ -68,13 +84,25 @@
 
                 <?php
 
-				 $sql = 'select * from user';
-				 if ($_SESSION['role'] != SUPERUSER)
+				$sql = 'select * from user';
+				if ($_SESSION['role'] != SUPERUSER)
 				   $sql = $sql.' where userid = '.$_SESSION['userid'].' order by Name';
 
-				 //echo $sql;
+				//echo $sql;
+				$result = $con->query($sql);
+				$i = 0;
+				if ($result->num_rows > 0) {
+					// output data of each row
+					while($row = $result->fetch_assoc()) {
+						$name = $row['Name'];
+				 		$loginid = $row['LoginID'];
+				 		$role = $row['Role'];
+				 		$mdate = $row['ModifiedDate'];
+				 	    $i++;
+					//} //end while
+				//} 
 
-				 if( !($result = $db->sql_query($sql)) )
+				 /*if( !($result = $db->sql_query($sql)) )
 				    echo 'SQL Error';
 
                  $i = 0;
@@ -86,7 +114,7 @@
 				 		$loginid = $row['LoginID'];
 				 		$role = $row['Role'];
 				 		$mdate = $row['ModifiedDate'];
-				 	    $i++;
+				 	    $i++;*/
                 ?>
                 <tr bgcolor="#FFFFCC">
                   <td>
@@ -101,13 +129,10 @@
 
                 <?php
 
-                	}
-				 	while ( $row = $db->sql_fetchrow($result) );
+                	} //end while
+				} 
 
-                $db->sql_freeresult($result);
-                }
-
-                $db->sql_close();
+                //$db->sql_close();
                 ?>
               </table>
               </td>
@@ -121,6 +146,9 @@
 </td>
   </tr>
 </table>
-<?php require('footer.inc')?>
+<?php 
+$con->close();
+require('footer.inc')
+?>
 </body>
 </html>
